@@ -1,0 +1,9 @@
+35. pq x eh necessario para a multiplicacao em todos os processos locais
+
+36. pq A eh dividida em linhas, ou submtrizes, q sao distribuidas entre os processos 
+
+37. Pq o resultado da operacao y = A @ x eh uma lista, por isso precisa armazenar cada um dos resultados locais
+
+38. Nao pq a multiplicacao de matrizes (no caso x eh uma matriz de apenas uma linha) resulta sempre em uma submatriz de dimensoes dependentes das dimensoes das matrizes originais
+
+39. A, pois A eh definido como np.random.random((N,N)) ou seja ele cresce por N**2 enquanto que x cresce por N**1

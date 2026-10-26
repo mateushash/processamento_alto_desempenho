@@ -1,0 +1,11 @@
+8. pois usando o np.array_split pode-se usar um N não divisivel por size. O retorno da fucnao eh N%size sub-arrays teh tamanho N//size + 1 e o resto(dos subarrays) de tamanho N//size
+
+9. pois os tamanho dos dados locais difere. Se eles fossem de tamanhos iguais (N_rank0 = N_rank1 = ... = N_rankN) entao poderia-se usar reduce para somar as medias
+
+10. a soma de cada array de dados local e o tamanho desse array
+
+11. reduce 
+
+12. Nao pois so precisa do resultado final e nao dos individuais
+
+13. Reduce ja entrega o resultado final, com gather teria-se que processar os resultados individuais para se obter o final

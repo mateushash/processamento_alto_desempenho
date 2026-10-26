@@ -1,0 +1,7 @@
+\section{Problema 1 - Estatísticas}
+Trata-se de um problema simples de se somar N valores e calcular sua média. Nesse caso N foi decomposto em um array de dados utilizando-se np.array\_split da biblioteca \citeonline{numpydoc}, pois pode-se usar um N não divisível por size. O retorno da função é N\%size sub-arrays de tamanho N//size + 1 e o resto(dos subarrays) de tamanho N//size. 
+
+Para -se calcular a média, deve se atentar para calcular a média das médias de cada bloco pois os tamanho dos dados locais difere. Se eles fossem de tamanhos iguais $(N\_rank0 = N\_rank1 = ... = N\_rankN)$ então poderia-se usar reduce para somar as médias.
+Para se calcular corretamente a média global deve-se usar reduce na soma de cada array de dados local e o tamanho desse array. 
+
+A validação foi realizada se comparando com as funções np.sum e np.mean do numpy e nesse exercício não se fez comparações de Desempenho, logo não se pode afirmar que a paralelização é vantajosa ou não(provavelmente é).

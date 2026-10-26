@@ -1,0 +1,9 @@
+25. Todo execução resulta no mesmo valor ??????????????????????? 
+
+26. Se os pontos[N, N] fosse um vetor definido fixo, precisaria usar o scatter para passar para os outros processos, na implementacao utilizada o vetor foi definido com valores aleatorios e nao definidos sequencialmente igual na implementacao linear 
+
+27. Gerar localmente eh melhor para um gerenciament de memoria pois assim o rank 0 nao precisa carregar todo o dataset na memoria antes do scatter. Em relacao ao scatter, não ha necessidade de se transferir os dados do rank 0 para os outros ranks visto q a datase eh gerada localmente
+
+28. Não, na verdade parece q o erro aumento vide pi_paralelo.out
+
+29. como a estrutura pede para gerar o vetor de tamanho N//size em cada um dos processos, tanto a precisao do numero quanto o tempo de execucao estao aumentando. Observando a implementacao linear que pega um vetor de pontos de tamanho N, com as coordenadas distribuidas uniformemente entre -1 e 1 e q a paralela pega valores aleatorios entre -1 e 1 para cada processo eh possivel q a aleatoriedade esteja comprometendo os resultados, pois ele pode estar pegando valores repetidos de pontos em diferentes processos resutltando na duplicaao de esforço. A necessidade de se criar tantos vetores quant se ha processo leva a crer q nessa implementacao o aumento do numero de processos compromete nao soh o resultado final mas tabem o tempo de execucao, vide os resultados no arquivo pi_paralelo.out 

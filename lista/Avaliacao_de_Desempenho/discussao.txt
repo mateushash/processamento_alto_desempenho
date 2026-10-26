@@ -1,0 +1,53 @@
+PRIMOS
+
+custo computacional:
+  como a distribuicao foi feita de froma ciclica, a distribuicao esta homogena, logo nenhum processo esta sobrecarregado.
+  Porem a distribuicao ciclica do tipo:
+  P0 -> 2, 6, 10, 14, ...
+  P1 -> 3, 7, 11, 15, ...
+  P2 -> 4, 8, 12, 16, ...
+  P3 -> 5, 9, 13, 17, ...
+  para o caso especifico de determinacao de numeros primos deixa a desejar, pois nota-se q ha um degrau sendo formado, no sentido que os processos que recebem numeros pares, so recebem numeros pares e por isso executam muito mais rapido(n%2 == 0 -> return)
+  Esse degrau fica evidenciado no grafico de speedup, sempre q o numero de processos eh par não efetiva mudança de velocidade em relação a quantidade de processos impares anterior, somente na proxima quantidade de processos impares eh q se ve avanço.
+  
+
+
+custo de comunicaccao:
+ Para a fase de broadcast e scater, como os elementos sao alocados localmente, o custo de comunicacao eh irrelevante, visto que o unico elmento compartilhado eh o numero total de numeros a serem testado(nao o vetor contendo esses numeros). 
+  Para a fase de gather, o custo representa a necessidade de cada processo enviar a lista com os numeros primos por ele encontrados, como a divisao eh homogenea, em tese essa lista tem tamanho similar, logo o custo de comunicacao deve ser mais ou menos constante.
+
+criacao e gerenciamento de processos:
+  Cada processo eh criado uma unica vez e eles devem apenas retornar a lista de numeros primos, que pode ser obtida com um gather
+
+sincronizacao:
+  Não necessidade de sincronizacao, visto que cada processo eh independente e nao ha necessidade de esperar por outros processos, pois eles soh buscam por primos dentro do intervalo que lhes foi atribuido.
+
+balanceamento de carga:
+  Como a distribuicao foi feita de forma ciclica, a distribuicao esta homogena, logo nenhum processo esta sobrecarregado. 
+
+tamanho do problema:
+  Quanto maior o numero de numeros a serem testados, maior o tempo de execucao, pois quanto maior o numero a ser testado, mais tempo ele leva para ser testado
+
+numero de nucleos fisicos:
+  eu soh tenho 6 nucleos fisicos, logo nao ha necessidade de criar mais processos do que isso, pois nao ha como eles serem executados em paralelo.
+
+numero de processadores logicos
+  como o numero de nucleos fisicos eh 6, o numero de processadores logicos eh 12, mas os algoritmos so foram testados com ate 6 processos.
+  
+possivel oversubscription:
+  nesse caso os numeros atribuidos a cada processo sao da forma:
+    i in range(2+rank, N, size) 
+  e por isso, cada processo recebe N\\size numeros logo nao ha oversubscription
+
+
+MONTE CARLO
+
+custo computacional:
+custo de comunicaccao:
+criacao e gerenciamento de processos:
+sincronizacao:
+balanceamento de carga:
+tamanho do problema:
+numero de nucleos fisicos:
+numero de processadores logicos
+possivel oversubscription:

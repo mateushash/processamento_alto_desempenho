@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float,pdfescape}
+
+\title{\\Análise de Otimização em Processamento Alto Desempenho}
+
+\begin{document}
+
+\maketitle
+
+% PART I - Cell 0 (markdown)
+\section*{Parte I -- Análise conceitual}
+
+\subsection*{Questão 1 -- Otimização não significa apenas "fazer menos contas"}
+
+Supondo que A e B rodam no mesmo computador. O programa B pode ter uma melhor localidade espacial que o A, como é o exemplo de casos de acesso de matrizes por colunas(pior localidade) e por linhas(melhor localidade), nesse caso talves os acessos realizados por A, mesmo que menores, tem uma localidade pior.
+
+O programa A talves esteja carregando na cache dados, mas apenas usando um desses dados em cada operacao, precisando entao carregar novos dados para entao realizar suas outras operações.
+
+A estrutura de dados de A pode ser menos otimizada que a de B,como nos casos em que fazer busca de acessos em uma lista gera um custo maior do que fazer em um set.
+
+O programa A pode estar gerando um overhead ao chamar funções que o programa B nao chama
+
+\# FALTA EXEMPLO
+
+\subsection*{Questão 2 -- Hierarquia de memória}
+a) Porque o acesso a RAM é mais demorado que o acesso aos caches Ls, que por sua vez são mais demorados que os acessos aos registradores.
+
+b) Um cache miss ocorre quando o dado buscado nao esta no nivel acessado, forçando a CPU a buscar o dado em um nivel abaixo. Eg: buscar em L3 um dado que esta na RAM
+
+c) Um cache hit ocorre quando o dado buscado esta no nivel consultado
+
+d) Localidade Espacial: Os vizinhos dos dados acessados tem a chance de serem acessados.
+
+Localidade Temporal: Os dados agora acessados tem a chance de serem acessados novamente em breve
+
+e) O primeiro padrao de acesso faz uso sequencial, oq gera uma localidade espacial melhor, pois os dados estao carregados em sequencia e tabem uma localidade temporal melhor, pois como o acesso esta ocorrendo sequencialmente, o proximo dado sera acessado em seguida.
+
+O segundo padrao tem um stride muito grande e por isso a memoria cache precisa ser constantemente atualizada, levando a muito mais cache miss
+
+% PART II - Cell 1 (markdown)
+\vspace{0.5em}
+\section*{Parte II -- Otimização sequencial}
+
+\subsection*{Questão 3 -- Análise do código}
+
+A principal diferença está na alocação de memória: em vez de declarar uma lista vazia e fazer a alocação prévia do espaço de memória, deve-se pré-alocar com tamanho conhecido.
+
+O comando \texttt{append()} realoca toda a memória anterior mais o espaço para o append em cada execução, como o tamanho e o tipo de dado sao conhecidos, fazer a alocação previa é melhor.\\
+
+Fazer 2*math.sqrt(x[i]) para diminuir o overhead.
+
+% PART II - Cell 2+3+4: code cells with functions
+\begin{verbatim}
+import math 
+import numpy as np
+from numba import njit
+
+# Versao A 
+@njit
+def calcula_A(x):
+    resultado = []
+
+    for i in range(len(x)):
+        valor = math.sqrt(x[i]) + math.sqrt(x[i])
+        resultado.append(valor)
+
+    return resultado
+
+# Versao B 
+@njit
+def calcula_B(x):
+    resultado = [0.0] * len(x)
+    size = len(x)
+
+    for i in range(size):
+        valor = 2 * math.sqrt(x[i])
+        resultado[i] = valor
+
+    return resultado
+
+# Versao C
+@njit
+def calcula_C(x):
+    size = len(x)
+    resultado = np.empty(size, dtype=np.float64)
+
+    for i in range(size):
+        valor = 2 * math.sqrt(x[i])
+        resultado[i] = valor
+
+    return resultado

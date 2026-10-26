@@ -1,0 +1,29 @@
+\section{Problema 4 - Estimativa de $\pi$ pelo Método de Monte Carlo}
+O problema gera aleatoriamente e localmente um conjunto de pontos entre $-1 <= 1$ de tamanho $N//size$ e calcula localmente quais desses pontos estão dentro do círculo e através de dois reduces calcula o total de pontos dentro do círculo e o total de pontos gerados. O processo root então faz a estimativa de $\pi$ através da fórmula: 
+
+\begin{equation}
+  pi = 4*\frac{total\_dentro\_circulo}{total\_gerado}
+\end{equation}
+
+O programa gerou a seguinte tabela de resultados:
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Processos} & \textbf{Estimativa} & \textbf{Tempo Execução} \\ \hline
+1 & 3.14160792 & 28.35727361399995 \\ \hline
+2 & 3.14164428  & 14.7583513579998\\ \hline
+4 & 3.14189552 & 7.9102041789999475 \\ \hline
+8 & 3.1419221656768865 & 6.13996790300007 \\ \hline
+\end{tabular}
+\caption{Tempos de execução e estimativa de $\pi$}
+\label{tab:pi}
+\end{table}
+
+Se todos os processos utilizassem o mesmo vetor de pontos[N//size, N//size] definido fixo, a estimativa de $\pi$ seria a mesma para todos os processos. No entanto, como cada processo gera aleatoriamente seus próprios pontos, a estimativa de $\pi$ pode variar entre execuções diferentes.
+
+Se os pontos[N, N] fossem um vetor definido fixo como na implementação linear, precisaria usar o scatter para passar para os outros processos, na implementação utilizada o vetor foi definido com valores aleatórios para não se haver a necessidade de comunicar os dados entre o rank 0 e os demais ranks.
+
+Gerar localmente é melhor para um gerenciamento de memória pois assim o rank 0 não precisa carregar todo o dataset na memória antes do scatter. Em relação ao scatter, não há necessidade de se transferir os dados do rank 0 para os outros ranks visto que o dataset é gerado localmente
+
+Como a estrutura pede para gerar o vetor de tamanho N//size em cada um dos processos, tanto a precisão do número quanto o tempo de execução estão aumentando. Observando a implementação linear que pega um vetor de pontos de tamanho N, com as coordenadas distribuídas uniformemente entre -1 e 1 e que a paralela pega valores aleatórios entre -1 e 1 para cada processo é possível que a aleatoriedade esteja comprometendo os resultados, pois ele pode estar pegando valores repetidos de pontos em diferentes processos resultando na duplicação de esforço. A necessidade de se criar tantos vetores quanto há processos leva a crer que nessa implementação o aumento do número de processos compromete não só o resultado final mas também o tempo de execução, vide os resultados da tabela \ref{tab:pi}. 

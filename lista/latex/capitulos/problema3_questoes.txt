@@ -1,0 +1,23 @@
+19. pois for i in range(rank, N, size) define localmente os indice, supondo -n 4 e N = 100:
+rank 0:
+  for i in range(0, 100, 4)
+    0 4 8 12 ... 
+rank 1:
+  for i in range(1, 100, 4)
+    1 5 9 13 ...
+rank 2: 
+  for i in range(2, 100, 4)
+    2 6 10 14 ...
+rank 3:
+  for i in range(3, 100, 4)
+    3 7 11 15 ...
+
+20. apenas a, b e N pois eles são computacionalmente mais baratos(menos valores a serem transmitidos)
+
+21. O brodcast passa apenas 3 valores para todos os processos inves de ter q dividir 10000000 de valores entre os processos 
+
+22. a decomposicao do indice in função do rank e do size dos processos. usando a regra do ponto medio inves de decompor o array de 10000000 de elementos
+
+23. Nao necessariamente, soh se N for divisivel por size, pois como a divisao foi baseada no size dos processos apenas o ultimo pode receber um valor menor doq os outros, visto q ele pega o resto da divisao de N/size
+
+24. 1.226 10^-13

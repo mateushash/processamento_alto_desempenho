@@ -1,0 +1,22 @@
+===== Processes: 1 =====
+[mpiexec@mackeinze] Sending Ctrl-C to processes as requested
+[mpiexec@mackeinze] Press Ctrl-C again to force abort
+Traceback (most recent call last):
+  File "/home/noob/Documents/current_work/aulas10s/processamento_alto_desempenho/lista/scripts/../problema4_paralelo_com_mesma_sequencia.py", line 29, in <module>
+    local_circle = [point for point in local_points if point[0]**2 + point[1]**2 <= 1]
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/noob/Documents/current_work/aulas10s/processamento_alto_desempenho/lista/scripts/../problema4_paralelo_com_mesma_sequencia.py", line 29, in <listcomp>
+    local_circle = [point for point in local_points if point[0]**2 + point[1]**2 <= 1]
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 38570 RUNNING AT mackeinze
+=   EXIT CODE: 2
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Interrupt (signal 2)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions

@@ -1,0 +1,9 @@
+\section{Problema 5 - Multiplicação de Matriz por Vetor}
+
+O problema pede para se fazer o cálculo da multiplicação de uma matriz A por um vetor x, onde A é uma matriz NxN e x é um vetor de dimensão N. O resultado da operação y = A @ x é um vetor de dimensão N.
+
+Para isso a matriz A é dividida em linhas, ou submatrizes, que são distribuídas por scatter para os demais processos. Cada processo realiza a multiplicação de sua submatriz com o vetor x, e o resultado é transmitido por gather para o processo root. 
+Para não sobrecarregar o último processo com uma matriz que, além da suas linhas, contém o resto da divisão de size(A) por size(comm), o processo root distribui essas linhas entre os demais processos, começando pelo processo 0. 
+Por conta dessa implementação, após o gather final, precisa-se novamente ordenar o valor de cada subvetor dentro da lista gather, para pegar o último elemento dos vetores retornados pelos processos com mais linhas e adicioná-los ao final do vetor global retornado pelo gather.
+
+A validação do resultado foi feita comparando o resultado da multiplicação paralela com o resultado da multiplicação sequencial (A @ x), utilizando a função np.allclose().

@@ -1,0 +1,20 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[{MPI Developers} 2026]{mpidoc}
+\abntrefinfo{{MPI Developers}}{{MPI Developers}}{2026}
+{{MPI Developers}. \emph{{MPI} Documentation}. 2026.
+Accessed: 2026-09-23.
+Dispon{\'\i}vel em: \url{https://mpi4py.readthedocs.io/en/stable/index.html}.}
+
+\bibitem[{NumPy Developers} 2026]{numpydoc}
+\abntrefinfo{{NumPy Developers}}{{NumPy Developers}}{2026}
+{{NumPy Developers}. \emph{{NumPy} Documentation}. 2026.
+Accessed: 2026-09-23.
+Dispon{\'\i}vel em: \url{https://numpy.org/doc/stable/reference/index.html}.}
+
+\end{thebibliography}

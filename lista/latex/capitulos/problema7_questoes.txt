@@ -1,0 +1,5 @@
+44. Pois como o resutlado final necessita que todos os processos em paralelo executem primeiro, o processo com maior tempo de execucao gera um bottleneck visto q eh ele quem determina quando o resultado estara pronto
+
+45. que o balanceamento de carga esta incorreto, visto que outros processos estao mais eficiente que aquele que demorou muito mais para ser completado.
+
+46. Sim, vide resposta 45

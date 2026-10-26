@@ -1,0 +1,36 @@
+MPI - Message Passing Interface
+  Open Mpi (linux)
+  Conceito de comunnicador
+
+    define quantos processos filhos serao criados
+
+
+
+PAD----
+  MIMD|
+  SISD| <- Desempenho 
+  MISD|       ^
+  SIMD|       |
+ ------   codigo
+
+arquitetura de computadores
+  Sistmea de Memoria Central 
+  Sistema de Memoria Distribuida
+  Clusters
+
+
+Programação Paralela
+  consideracao: tipo de arquitetura de paralelismo utilizada 
+  Deconmposicao de dominio ou funcional 
+    usar mpi para faze-la
+  Funcional 
+
+
+
+run same code in 8 subprocess
+ mpirun -n 8 python hellp_world.py 
+
+
+
+ DEADLOCK
+  ocorre qnd um processo esta esperando um outro processo liberar recursos enquanto q este tbm esta esperando o primeiro liberar seus recursos

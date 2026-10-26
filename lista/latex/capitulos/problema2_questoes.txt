@@ -1,0 +1,10 @@
+14. Não, eles diferem de no maximo a ordem de .1(s) mas isso deve-ser escalonado considerenado a quantidade de processos, pois quanto mair o -n maior a difernaç de etempo de execucao
+
+15. Reduce, pois nao precisa processar os resultados individuais coletados 
+
+16. No gather, pois ele recebe cada um dos resultdos locais de cada processo
+
+17. Como gather executou mais rapido q o reduce em relacao ao aumento da qnt de processos, para numeros grande de processos eh melhor utilizar o gather
+
+18. Quando se precisa armazenar os resultados locais de cada processo 
+

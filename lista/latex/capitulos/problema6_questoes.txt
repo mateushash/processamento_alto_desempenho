@@ -1,0 +1,9 @@
+40. a decomposicao ciclica deveria distribuir mais homogeniamente os dados, conswquentemente o ultimo processo nao ficaria com os maiores numeros(q demoram mais para serem testados), porem os resultado mostram q a decomposicao em blocos para numero de processos maiores executa mais rapidamente q a ciclica. [ver implementacao ???????]
+
+41. Não, quanto maior o numero maior o custo pois precisa-se dividir pelos numeros menores anteriores a ele
+
+42. O ultmo processo pode acabar ficando com numeros mais dificies de serem calculoados(por serem maiores) por isso o balanceamento precisa ser uniforme, pois quanto maior o numero maior o tempo de processamento 
+
+43. A eficiencia depende do tipo de calculo sendo feito, se o tamanho do numero eh irrelevante, o balanceamento pode ser heterogeneo, se o calculo depende do numero sendo passado, o balanceamento deve ser homogeno para q um proceso nao fique com numeros de msm magnitude e conswquentemente terminando mais rapido ou mais lento
+
+

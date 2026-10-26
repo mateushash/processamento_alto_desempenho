@@ -1,0 +1,21 @@
+\section{Problema 2: Gather Reduce}
+O problema se dispõe a comparar o tempo de execução do gather e do reduce com processos de 1, 2, 4 e 8. Abaixo segue a tabela com os tempos de execução de cada um dos métodos:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Processos} & \textbf{Gather (s)} & \textbf{Reduce (s)} \\ \hline
+1 & 0.15328741300027104 & 0.15738252000028297 \\ \hline
+2 & 0.1735095040003216  & 0.18257671099991057\\ \hline
+4 & 0.16784756300012305 & 0.14800468299972636 \\ \hline
+8 & 0.15755982599966956 & 0.1503943029997572 \\ \hline
+\end{tabular}
+\caption{Tempos de execução do gather e reduce}
+\label{tab:tempos}
+\end{table}
+
+Pela tabela acima, pode-se notar que os resultados são praticamente iguais, com a maior diferença de tempo sendo de aproximadamente 0.02 segundos(linha 2). 
+Como há uma equivalência de resultados, o método reduce possui uma vantagem que é a de não precisar de código adicional para processar os resultados individuais além de não precisar transferir mais informações para o processo root. 
+
+Com isso, o reduce é mais adequado para problemas grandes, visto que o nó raiz só recebe o resultado final, sem precisar armazenar individualmente cada resultado. 

@@ -1,0 +1,22 @@
+\section{Problema 3 - Integração Numérica}
+O problema requer que se faça a integração da função $f(x) = sin(x)$ no intervalo $[0, \pi]$ usando o método do ponto médio. A função é integrada numericamente usando a regra do ponto médio, que é uma técnica de integração numérica que aproxima a integral de uma função usando retângulos. O intervalo de integração é dividido em subintervalos, e a altura de cada retângulo é determinada pelo valor da função no ponto médio de cada subintervalo.
+
+Para isso o valor de N utilizado foi de 100.000.000 subretângulos, onde cada processo ficou responsável por calcular localmente os índices que pertencem ao seu intervalo e consequentemente realizar a soma local que por fim foi reduzida para o processo 0 em uma soma global. 
+
+Para não se utilizar o scatter(e ter que transferir 100.000.000 valores entre os processos) usou-se for i in range(rank, N, size) que define localmente os indice como no exemplo de -n 4 e N = 100:
+
+rank 0:
+  for i in range(0, 100, 4) -> 0 4 8 12 ... 
+
+rank 1:
+  for i in range(1, 100, 4) -> 1 5 9 13 ...
+
+rank 2: 
+  for i in range(2, 100, 4) -> 2 6 10 14 ...
+
+rank 3:
+  for i in range(3, 100, 4) -> 3 7 11 15 ...
+
+Esse método é uma decomposição cíclica dos dados.
+
+Na estratégia de solução, apenas a, b e N são transmitidos por broadcast, passando apenas 3 valores em vez de N//size valores por rank. 

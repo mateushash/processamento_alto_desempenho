@@ -1,0 +1,6 @@
+Situacao  Operção MPI
+A         broadcast
+B         scatter
+C         gather
+D         reduce 
+E         allreduce
