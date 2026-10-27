@@ -23,11 +23,19 @@ def plot_polynomial(x, y, poly, degree):
     plt.grid(True, linestyle="--", alpha=0.6)
 
 
-def plot_data(df, marker='o', color='green', label='', title=''):
-    plt.plot(df['size'], df['mean'], marker=marker, color=color, label=label)
+def plot_data(
+        x, 
+        y, 
+        marker='o', 
+        color='green', 
+        x_label='',
+        y_label='',
+        label='', 
+        title=''):
+    plt.plot(x, y,  marker=marker, color=color, label=label)
 
-    plt.xlabel("Input size")
-    plt.ylabel("Mean Execution Time")
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
     plt.title(title)
     
     plt.legend()
@@ -61,28 +69,4 @@ def fit_data_polynomial(df, degree):
     return polynomial
 
 
-if __name__ == "__main__":
-    results_V0 = read_data() 
-    match int(input("Enter an options: ")):
-        case 0:
-            # try to fit a polynomial of degree 2
-            polynomial = fit_data_polynomial(results_V0, 2)
-            plot_polynomial(results_V0['size'], results_V0['mean'], polynomial, 2)
-            plot_data(results_V0, label='Real Execution Time', title="Element size x Mean Execution Time")
-            plt.savefig("./results/Q3_polynomial_interpolation.png")
-            plt.show()
-        case 1:
-            results_V1 = read_data(file="resultadosV1.csv")
-            plot_data(results_V0, label='V0 Execution Time')
-            plot_data(results_V1, label='V1 Execution Time', color="blue", title="V0 Sum vs V1 Multiplication")
-            plt.savefig("./results/V0_vs_V1.png")
-            plt.show()
-        case 2:
-            results_V2 = read_data(file="resultadosV2 - Numpy.csv")
-            results_V2['speed_up'] = bm.calc_speed_up(list(results_V0['mean']), list(results_V2['mean'])) 
-            speed_up_graph(results_V0['size'], results_V2['speed_up'], title='V0 vs V2')
-            plt.savefig("./results/V0_vs_V2_speed_up.png")
-            plt.show()
 
-        case _:
-            print("Invalid option")

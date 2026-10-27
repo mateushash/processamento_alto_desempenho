@@ -75,7 +75,7 @@ case $VERSION in
     ;;
   *)
     # Run cProfile and output binary data to the specified file
-    python -m cProfile -o "${OUTPUT_FILE}" "${PYTHON_SCRIPT}" "${VERSION}"
+    python -m cProfile -o "${OUTPUT_FILE}" "${PYTHON_SCRIPT}" 1 "${VERSION}"
     
     if [ -f "${OUTPUT_FILE}" ]; then
         echo "✅ Profiling complete!"
@@ -85,7 +85,7 @@ case $VERSION in
         echo "   python3 -m pstats ${OUTPUT_FILE}"
         echo ""
         echo "📊 To view the interactive browser visualization, run:"
-        echo "   pip install snakeviz && snakeviz ${OUTPUT_FILE}"
+        echo "   snakeviz ${OUTPUT_FILE}"
     else
         echo "❌ Error: Failed to generate profile data."
         exit 1
