@@ -43,6 +43,7 @@ def write_benchmark_metrics(
         *args,
         element_size: list | None = None, 
         experiment_title: str = '', 
+        headers: list | None = None,
 ):
     """
     Write the metrics of function f to a csv file
@@ -54,7 +55,8 @@ def write_benchmark_metrics(
         *args: 
     """
 # TODO: Generalize to work with any f with args
-    headers = ['f_name', 'size', 'min', 'mean', 'median', 'desvio_p']
+    if headers is None:
+        headers = ['f_name', 'size', 'min', 'mean', 'median', 'desvio_p']
     data = []
     if element_size is None:
         element_size = [500, 1000, 2000, 4000]

@@ -73,3 +73,10 @@ If your code reads memory sequentially as it is physically arranged, it triggers
 • If you are processing data Row-by-Row: Use order="C". (e.g., summing across axis 1, looping over rows).
 • If you are processing data Column-by-Column: Use order="F". (e.g., summing across axis 0, looping over columns).
 • Interoperability: Certain external mathematical libraries written in Fortran or C++ (like standard BLAS/LAPACK routines for heavy linear algebra computations) strictly expect order="F" and will perform a costly internal copy operation if you pass them a "C" matrix.
+
+# Parte IX — Stride
+## Questão 9 — Custo por acesso
+
+# Parte X — Blocking / Tiling
+## Questão 10 — Multiplicação matricial em blocos
+

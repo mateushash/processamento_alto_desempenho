@@ -2,6 +2,8 @@ import sys
 import matplotlib.pyplot as plt
 import benchmarks as bch
 import analysis as anal
+from stride import test_stride
+
 from stencil2D import stencil2D as ste
 
 def show_benchmarks_options(choice: str | None = None):
@@ -55,6 +57,67 @@ def show_analyssis_options():
             anal.speed_up_graph(results_V0['size'], results_V2['speed_up'], title='V0 vs V2')
             plt.savefig("./results/V0_vs_V2_speed_up.png")
             plt.show()
+
+        case _:
+            print("Invalid option")
+
+def show_stride_options():
+    print("STRIDE TEST")
+    print("Choose a stride value: ")
+    print("1 - 1")
+    print("2 - 2")
+    print("4 - 4")
+    print("8 - 8")
+    print("16 - 16")
+    print("32 - 32")
+    print("64 - 64")
+    print("128 - 128")
+    print("256 - 256")
+    print("All - 0")
+    print("quit - Exit")
+
+    choice = input()
+    match choice:
+        case '0':
+            intervals = [1, 2, 4, 8, 16, 32, 64, 128, 256]
+            test_stride(intervals)
+        case '1' | '2' | '4' | '8' | '16' | '32' | '64' | '128' | '256':
+            test_stride([int(choice)])
+        case 'quit' | 'exit' | 'quit()' | 'exit()' | 'q' | 'e':
+            print("Exiting...")
+            sys.exit()
+        case _:
+            print("Invalid option")
+
+def show_stride_analyssis_options():
+    results_Stride = anal.read_data(file="resultadosStride.csv") 
+    print("STRIDE ANALYSIS")
+    print("Choose an option: ")
+    print("0 - Plot Stride vs Execution Time by access")
+    print("1 - Plot Execution Time by access and Execution Time")
+    match int(input("Enter an options: ")):
+        case 0:
+            anal.plot_data( results_Stride['stride'], results_Stride['tempo_por_acesso'], label='Stride',  x_label="Stride size", y_label="Execution Time by access")
+            plt.savefig("./results/stride.png")
+            plt.show()
+        case 1: 
+            anal.plot_data( results_Stride['stride'], results_Stride['tempo_de_acesso'], label='Tempo de Acesso', color="orange") 
+            anal.plot_data( results_Stride['stride'], results_Stride['tempo_por_acesso'], label='Tempo Por Acesso',  x_label="Stride size")
+            plt.savefig("./results/t_acess_vs_t_by_acess.png")
+            plt.show()
+
+        case _:
+            print("Invalid option")
+
+def show_matrix_multiplication_options():
+    bs = [8, 16, 32, 64, 128]
+    n = [500, 1000, 2000, 4000, 8000]
+    print("MATRIX MULTIPLICATION")
+    print("quit - Exit")
+
+    choice = input()
+    match choice:
+        case "1": 
 
         case _:
             print("Invalid option")
